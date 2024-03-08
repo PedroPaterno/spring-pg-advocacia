@@ -1,17 +1,32 @@
 package br.com.fiap.springpgadvocacia.Entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Entity
-@Table(name = "tipoDeAcao")
+@Table(name = "TB_TIPO_DE_ACAO")
 public class TipoDeAcao {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SQ_TIPO_DE_ACAO")
+    @SequenceGenerator(
+            name = "SQ_TIPO_DE_ACAO",
+            sequenceName = "SQ_TIPO_DE_ACAO",
+            initialValue = 1,
+            allocationSize = 1
+    )
+
+    @Column(name = "ID_TIPO_DE_ACAO")
     private Long id;
 
-    @Column
-    @JoinColumn(name = "nome")
+    @Column(name = "NM_TIPO_DE_ACAO")
     private String nome;
 
 }
